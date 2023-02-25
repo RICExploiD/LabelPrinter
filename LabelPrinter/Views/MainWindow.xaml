@@ -1,0 +1,37 @@
+﻿<Window x:Class="LabelPrinter.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LabelPrinter.Views"
+        mc:Ignorable="d"
+        Title="Title"
+        Height="300" 
+        Width="300"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ComboBox ItemsSource="{Binding Path=DataList}" 
+                  SelectedItem="{Binding Path=ChoosenLabelData, Mode=OneWayToSource}"
+                  FontSize="45"
+                  >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Material}" FontWeight="Heavy"/>
+                        <TextBlock Text="{Binding Path=Description}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button Command="{Binding ButtonCommand}"
+                CommandParameter="{Binding Path=ChoosenLabelData}"
+                Content="Печать"
+                Grid.Row="1" 
+                FontSize="75"
+                />
+    </Grid>
+</Window>
